@@ -105,7 +105,7 @@ module Paperclip
     def run cmd, *params
       options           = params.last.is_a?(Hash) ? params.pop : {}
       expected_outcodes = options[:expected_outcodes] || [0]
-      params            = quote_command_options(*params).join(" ")
+      params            = params.join(" ") #Removed: quote_command_options(*params).join(" ")
 
       command = %Q[#{path_for_command(cmd)} #{params}]
       command = "#{command} 2>#{bit_bucket}" if Paperclip.options[:swallow_stderr]
@@ -130,7 +130,7 @@ module Paperclip
 
     def quote_command_options(*options)
       options.map do |option|
-        option.split("\"").map{|m| "\"#{m}\"" }.join("\\\"")
+        option.split("\'").map{|m| "'#{m}'" }.join("\\'")
       end
     end
 
