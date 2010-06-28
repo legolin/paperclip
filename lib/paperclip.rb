@@ -130,7 +130,7 @@ module Paperclip
 
     def quote_command_options(*options)
       options.map do |option|
-        option.split("'").map{|m| "'#{m}'" }.join("\\'")
+        option.split("\"").map{|m| "\"#{m}\"" }.join("\\\"")
       end
     end
 
